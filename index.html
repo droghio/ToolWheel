@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="index.js"></script>
+        <link rel="stylesheet" href="index.css"></link>
+    </head>
+    
+    <body>
+        <div id="circle" style="-webkit-transform: rotate(270deg);">
+            <div class="line" style="-webkit-transform: rotate(120deg);"><div class="marker"></div></div>
+            <div class="line" style="-webkit-transform: rotate(2400deg);"><div class="marker"></div></div>
+            <div class="line" style="-webkit-transform: rotate(0deg);"><div class="marker"></div></div>
+        </div>
+        
+        <div id="stats">
+            <ul>
+                <li><label>Height: </label><p id="height">100</p></li>
+                <li><label>Length: </label><p id="length">100</p></li>
+                <li><label>T: </label><p id="t">100</p></li>
+                <input type="range" id="tval" onchange="update()"></range>
+                <input type="range" id="nval" onchange="updateSections()"></range>
+                <input type="range" id="nsize" onchange="resizeSections()"></range>
+            </ul>
+        </div>
+    </body>
+
+</html>
