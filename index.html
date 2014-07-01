@@ -7,11 +7,7 @@
     </head>
     
     <body>
-        <div id="circle" style="-webkit-transform: rotate(270deg);">
-            <div class="line" style="-webkit-transform: rotate(120deg);"><div class="marker"></div></div>
-            <div class="line" style="-webkit-transform: rotate(2400deg);"><div class="marker"></div></div>
-            <div class="line" style="-webkit-transform: rotate(0deg);"><div class="marker"></div></div>
-        </div>
+        <div id="tw-circle"></div>
         
         <div id="stats">
             <ul>
@@ -19,7 +15,7 @@
                 <li><label>Length: </label><p id="length">100</p></li>
                 <li><label>T: </label><p id="t">100</p></li>
                 <input type="range" id="tval" onchange="update()"></range>
-                <input type="range" id="nval" onchange="updateSections()"></range>
+                <input type="range" id="nval" onchange="updateSections(['hi', 'hi', 'hi', 'go'])"></range>
                 <input type="range" id="nsize" onchange="resizeSections()"></range>
             </ul>
         </div>
