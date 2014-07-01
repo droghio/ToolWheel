@@ -10,10 +10,15 @@
     position: relative;
     top: 50%;
     left: 50%;
-    margin-bottom: -3px;
+    width: 0px;
+    height: 0px;
+    padding: 0px;
+    margin-bottom: -1px;
     border-top: 1px solid #333;
     -webkit-transform-origin: 0% 0%;
     -webkit-transform: rotate(45deg);
+    transform-origin: 0% 0%;
+    transform: rotate(45deg);
 }
 
 .marker{
@@ -22,7 +27,28 @@
     background-color: white;
     margin: -2px;
     position: relative;
+    border-radius: 100%;
     left: 50px;
+}
+
+.markerinner{
+    height: 70.7%;
+    width: 70.7%;
+
+    /*
+     Translation percentage is based on our size, which is
+     rad(2)/2 of total size, so our offset must be scaled by 2/rad(2)
+     
+     100% - 70.7% = 29.3%/2 = 14.65% * 2/rad(2) = 20.7%
+     */
+    -webkit-transform: translateY(20.7%);
+    transform: translateY(20.7%);
+    background-color: black;
+    margin: auto;
+}
+
+.markerinner:hover{
+	background-color: blue;
 }
 
 .heightmarker{
