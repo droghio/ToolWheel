@@ -1,4 +1,6 @@
-#tw-circle{
+.tw-circle{
+    resize: both;
+    overflow: hidden;
     width: 100px;
     height: 100px;
     background-color: blue;
@@ -22,9 +24,11 @@
 }
 
 .tw-marker{
+    resize: none;
     height: 4px;
     width: 4px;
     background-color: white;
+    display: none;
     color: white;
     font-size: 10%;
     margin: -2px;
