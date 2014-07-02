@@ -18,11 +18,13 @@
 
 
 
-function twCircle(content, index, parentselector, size, padding){
+function twCircle(content, index, parentselector, size, padding, rotation){
     this.content = content;
-    this.padding = padding || 2;
     this.innergeometry = {}
     this.index = 0
+    
+    this.rotation = rotation || 0;
+    this.padding = padding || 2;
     
     me = this
     indecies = []
@@ -42,7 +44,7 @@ function twCircle(content, index, parentselector, size, padding){
     }
 
     this.r = (size/2 || (Number($(".tw-circle[data-id="+this.index+"]").css("height").split("px")[0])/2))
-    
+
 }
 
 
@@ -57,6 +59,7 @@ twCircle.prototype = {
     updateSections: function (){
         
         this.r = (Number($(".tw-circle[data-id="+this.index+"]").css("height").split("px")[0])/2)
+        this.dom = $(".tw-circle[data-id="+this.index+"]").css({"-webkit-transform": "rotate(" + this.rotation + "deg)"})
         
         if (this.padding === "undefined")
             this.padding = 2
@@ -68,8 +71,8 @@ twCircle.prototype = {
         
         for (i=0; i < n; i++){
             $(".tw-circle[data-id="+this.index+"]").append(
-                '<div class="tw-line" style="-webkit-transform: rotate(' + theta*i + 'rad);">\
-                    <div class="tw-marker" style="-webkit-transform: rotate(' + -theta*i + 'rad);">\
+                '<div class="tw-line" style="-webkit-transform: rotate(' + (theta*i) + 'rad);">\
+                    <div class="tw-marker" style="-webkit-transform: rotate(' + (-theta*i-(this.rotation/180*Math.PI)) + 'rad);">\
                         <div class="tw-markerinner">' + this.content[i] + '</div>\
                     </div>\
                 </div>'
@@ -115,9 +118,6 @@ twCircle.prototype = {
         v.x = a * sin(-theta)
         v.y = a * cos(theta)  //No negatation needed for the angle, cosine is positive in quads 1 and 4.
         
-        m.x = .5*a * cos(theta)
-        m.y = .5*a * sin(theta)
-        
         //slope(v, m) //That's the centroid, not the incenter, oops.
         o = tan(Math.atan(this.slope(v, {x: 0, y: 0}))/2)
         
@@ -126,11 +126,10 @@ twCircle.prototype = {
         
         var center = {x:0, y:yBi(0)}
         var radius = 1-center.y
-        
         this.innergeometry = {center: center, radius: radius}
-        
+
         this.updateCircle()
-        
+
         return this.innergeometry
     },
     slope: function (p1, p2){return (p2.y - p1.y) / (p2.x - p1.x)},
@@ -158,7 +157,8 @@ $(document).ready(function(){
      go = 12
      circles = []
      do {
-        circles[go] = new twCircle([3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2].slice(0, go))
+        circles[go] = new twCircle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].slice(0, go))
+        circles[go].rotation = -60
         circles[go].updateSections()
         if (go){ go--}
     } while (go)

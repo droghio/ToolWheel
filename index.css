@@ -1,5 +1,4 @@
 .tw-circle{
-    resize: both;
     overflow: hidden;
     width: 100px;
     height: 100px;
@@ -57,9 +56,6 @@
 	background-color: blue;
 }
 
-.heightmarker{
-    border-top: 1px solid #888;
-}
 
 #stats{
     float: left;
