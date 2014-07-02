@@ -8,7 +8,7 @@
 //
 //
 //-------------------------------
-//Handy toolwheel widget creater.
+//Handy toolwheel widget factory.
 //
 //Makes circles in circles, possibly in circles!
 //--------------------------------
@@ -19,6 +19,8 @@
 
 
 function twCircle(content, index, parentselector, size, padding, rotation){
+    //Each circle has a unique data-id, and a reference to it's do part of its dom.
+    
     this.content = content;
     this.innergeometry = {}
     this.index = 0
@@ -137,7 +139,7 @@ twCircle.prototype = {
         
     updateCircle: function(){
         
-        //The diameter is twice the radius, radius is fraction of the larger circle's radius.
+        //The diameter is twice the radius, the variable radius is fraction of the larger circle's radius.
         //Center is the ratio of the larger circle.
         
         var r = this.r
@@ -150,31 +152,4 @@ twCircle.prototype = {
         }
     }
 
-}
-
-
-$(document).ready(function(){
-     go = 12
-     circles = []
-     do {
-        circles[go] = new twCircle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].slice(0, go))
-        circles[go].rotation = -60
-        circles[go].updateSections()
-        if (go){ go--}
-    } while (go)
-})
-
-
-function resizeSections(){
-    t = $("#nsize").val()
-    $(".tw-marker").css("height", t+"px")
-    $(".tw-marker").css("width", t+"px")
-    $(".tw-marker").css("margin", -t/2-1+"px")
-}
-
-
-function update(){
-    t = $("#tval").val()
-    $("#t").text(t)
-    $(".tw-marker").css("left", t+"px")
 }

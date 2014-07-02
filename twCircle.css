@@ -55,12 +55,3 @@
 .tw-markerinner:hover{
 	background-color: blue;
 }
-
-
-#stats{
-    float: left;
-}
-
-#stats > ul > li > p {
-    display: inline;
-}
