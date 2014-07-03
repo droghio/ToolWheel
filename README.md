@@ -1,7 +1,7 @@
 ToolWheel
 ===============
 
-**A in circular widget library. I have had enough of the box's tyrannous rule of the web.***
+***A in circular widget library. I have had enough of the box's tyrannous rule of the web.***
 
 
 
