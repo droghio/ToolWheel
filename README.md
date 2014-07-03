@@ -10,14 +10,14 @@ ToolWheel
 
 Make sure you have the jQuery and jQuery UI scripts included in your html file.
 
-  ```<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-     <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>```
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 
 
 Now include the the twCircle base code by adding the js and css files into your html document.
 
-  ```<script type="text/javascript" src="twCircle.js"></script>
-  <link rel="stylesheet" href="twCircle.css"></link>```
+    <script type="text/javascript" src="twCircle.js"></script>
+    <link rel="stylesheet" href="twCircle.css"></link>
 
   
   
