@@ -8,9 +8,9 @@
 //
 //
 //-------------------------------
-//TWCircle demo.
+//Social Circle Demo
 //
-//Makes a ton of them, even one that looks like a clock.
+//A simple circle of social links.
 //--------------------------------
 
 // July 1, 2014
@@ -21,13 +21,69 @@
 <html>
     <head>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
         <script type="text/javascript" src="../twCircle.js"></script>
         <script type="text/javascript" src="index.js"></script>
         <link rel="stylesheet" href="index.css"></link>
         <link rel="stylesheet" href="../twCircle.css"></link>
+        
+        <script>
+            animating = false;
+        
+            //Simple function to toogle hiding and showing the widget.
+            function toogle(trigger){
+                //Time to hide.
+                if ($(circles[1].dom).css("display") != "none" && !animating){
+                    
+                    animating = true;
+                    $(trigger).text("Wait.")
+                    
+                    //You can optionally include a callback here.
+                    circles[1].animateOut(function(){
+                        animating = false;
+                        $(trigger).text("Again!")
+                    });
+
+                }
+                
+                else if (!animating){ //Let's appear.
+                    
+                    animating = true;
+                    $(trigger).text("Wait.")
+
+                    circles[1].animateIn(function(){
+                        animating = false;
+                        $(trigger).text("Click me!")
+                    });
+
+                    //Since we destroyed the markers we need to rebind the new ones.
+                    //Make sure you don't overbind them, bad things will happen.
+                    $(".tw-marker").mouseover(function(event){ highlight($(event.target).children().children(".badge")) })
+                    $(".tw-marker").mouseout(function(event){ unh($(event.target).children().children(".badge")) })
+
+                }
+            }
+        
+        </script>
+        
+        <style>
+            #task{
+                width: 100px;
+                float: right;
+                font-family: arial;
+                position: relative;
+                color: white;
+                text-align: center;
+                background-color: #000;
+                padding: 3px;
+            }
+        </style>
+        
+        
     </head>
     
     <body>
+        <div id="task" onclick="toogle(this)">Click me!</div>
     </body>
 
 </html>

@@ -23,12 +23,12 @@ colors = ["rgb(60, 90, 150)", "rgb(74, 74, 74)", "rgb(202, 36, 45)", "rgb(97, 17
 content = []
 
 for (index=0; index < images.length; index++){
-    content[index] = "<img class='badge' onmouseover='highlight(this)' onmouseout='unh(this)' src='images/" + images[index] + ".png'></img>"
+    content[index] = "<img class='badge' src='images/" + images[index] + ".png'></img>"
 }
 
 $(document).ready(function(){
-     var go = 4
-     var circles = []
+     var go = 1
+    circles = []
      do {
         circles[go] = new twCircle(content)
         circles[go].rotation = 45
@@ -37,13 +37,16 @@ $(document).ready(function(){
         circles[go].animateIn()
         if (go){ go--}
     } while (go)
+
+    $(".tw-marker").mouseover(function(event){ highlight($(event.target).children().children(".badge")) })
+    $(".tw-marker").mouseout(function(event){ unh($(event.target).children().children(".badge")) })
 })
 
 
 function highlight(object){
     var name = digestPath($(object).attr("src"))
     $(object).attr("src", name.path+name.name+"Alt"+name.ext)
-    $(".tw-circle").css({"background-color": colors[Number(object.parentNode.parentNode.getAttribute("data-count"))]})
+    $(".tw-circle").stop().dequeue().animate({"background-color": colors[Number($(object).parent().parent().attr("data-count"))]})
 }
 
 //Unhighlight an image.

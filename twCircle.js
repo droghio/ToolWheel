@@ -40,11 +40,10 @@ function twCircle(content, index, parentselector, size, padding, rotation){
     })
     
     //If circle does not exist create it.
-    if (indecies.indexOf(index) == -1 || index === undefined){
+    if (indecies.indexOf(index) == -1 || index === undefined || index === null){
         this.index = index || this.index;
         parentselector = parentselector || "body"
         $(parentselector).append('<div class="tw-circle" data-id="' + this.index + '"></div>')
-        $(".tw-circle[data-id="+this.index+"]").css({height: size, width: size})
     }
 
     this.r = (size/2 || (Number($(".tw-circle[data-id="+this.index+"]").css("height").split("px")[0])/2))
@@ -81,6 +80,15 @@ twCircle.prototype = {
                 </div>'
             );
         }
+        
+        /*
+         Refering to circles and markers.
+         
+         Use the circle's data-id attribute in a jquery selector, or if you only have one that's easy.
+         
+         Each marker has a count attribute. If you haven't applied a rotation the 0th marker is
+         directly right of the center, and increases clockwise around the circle.
+        */
         
         //Adjust our marker's size.
         var r = this.r * .8
@@ -136,7 +144,9 @@ twCircle.prototype = {
     
     updateDOM: function(){
         $(this.dom).css({"height": this.r*2+"px", "width": this.r*2+"px"})
-        $(this.dom).css({"-webkit-transform": $(this.dom).css("-webkit-transform")+" rotate(" + this.rotation + "deg)", "transform": $(this.dom).css("transform")+" rotate(" + this.rotation + "deg)"})
+        
+        //Firefox animation issue on showing after hide. This should be instant but it isn't.
+        //$(this.dom).css({"-webkit-transform": $(this.dom).css("-webkit-transform")+" rotate(" + this.rotation + "deg)", "transform": $(this.dom).css("transform")+" rotate(" + this.rotation + "deg)"})
     },
     
     
@@ -157,18 +167,41 @@ twCircle.prototype = {
     },
     
     
-    animateIn: function(){
+    animateIn: function(callback){
         var me = this
-        $(me.dom).css({transition: "transform 1s", "-webkit-transition": "-webkit-transform 1s"})
         
-        me.updateDOM()
+        $(me.dom).css({transition: "transform 1s", "-webkit-transition": "-webkit-transform 1s"})
+        me.updateDOM() //CSS updates don't seem to take hold for a couple of miliseconds.
+
         me.calcMarkerGeo();
         me.addMarkers()
-            
-        $(me.dom).fadeIn(10).promise().done(function(){
+        
+        //Chrome had an odd animation glitch. Randomly the callback for the fade in would not call. To solve this I did three things.
+        // 1. Set the circle to display none so the fadein animation was called.
+        // 2. Moved from the file:// protocol to a simple server.
+        // 3. Used the callback as below, either way works.
+        
+        $(me.dom).fadeIn(10).promise().done(function(){ //Those CSS delays are part of the reason for the delay here.
             $(me.dom).css({transform: "rotate(" + me.rotation + "deg)" + " scale(1)", "-webkit-transform": "rotate(" + me.rotation + "deg)" + " scale(1)"})
-            $(".tw-circle[data-id="+me.index+"] .tw-marker").fadeIn(1000, function(){me.animateIntoPosition();})
+            $(".tw-circle[data-id="+me.index+"] .tw-marker").fadeIn(1000, function(){  me.animateIntoPosition(); if (callback){ callback(); }  })
         })
+
+    },
+    
+    
+    animateOut: function(callback){
+        var r = this.r * .8
+        var n = this.content.length
+        
+        var me = this
+        
+        //This comes first so it doesn't cancel the other animations.
+        if (n-1){
+            $(".tw-circle[data-id="+this.index+"] .tw-marker").stop().dequeue().animate({height: r+"px", "width": r+"px", left: 0+"px", "margin": -r/2-1+"px"})
+        }
+        
+        $(me.dom).css({transform: "rotate(" + 0 + "deg)" + " scale(0)", "-webkit-transform": "rotate(" + 0 + "deg)" + " scale(0)"})
+        $(".tw-circle[data-id="+me.index+"] .tw-marker").fadeOut(1000, function(){  $(me.dom).css("display", "none"); if (callback){ callback(); }; $(me.dom).css({transition: "transform 0s", "-webkit-transition": "-webkit-transform 0s"})})
 
     }
 

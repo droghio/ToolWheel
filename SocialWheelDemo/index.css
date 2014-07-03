@@ -20,15 +20,31 @@
 .badge{
     height: 70%;
     padding: 15%;
+    pointer-events: none;
     margin: auto;
 }
 
 div.tw-circle{
     padding: 19px;
     border: none;
+    float: left;
     background-color: #B00;
     background-image: url("images/bdrbgrd.png");
     background-size: 100% 100%;
+    
+    /*
+     You might be wondering why on earth would I have set a background
+     image that is a border around the object instead of just doing a
+     css border.
+     
+     Well...
+     Apperantly Firefox cannot paint dotted or dashed borders around curved
+     objects. Circles are curves, so unless I painted the border in this
+     covuluded fashion the cross browser consistency would be anything
+     but consistent.
+     
+     Probably not the most efficent way of doing it, but hey it works.
+     */
 }
 
 div.tw-marker{
@@ -37,4 +53,5 @@ div.tw-marker{
 
 div.tw-markerinner{
     background: none;
+    pointer-events: none;
 }

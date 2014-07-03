@@ -23,7 +23,7 @@ $(document).ready(function(){
      do {
         circles[go] = new twCircle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].slice(0, go))
         circles[go].rotation = -60
-        circles[go].updateSections()
+        circles[go].animateIn()
         if (go){ go--}
     } while (go)
 })

@@ -34,7 +34,6 @@
     width: 100px;
     height: 100px;
     background-color: none;
-    float: left;
     border: 4px dotted black;
     border-radius: 100%;
     margin: 10px;
@@ -83,7 +82,7 @@
      Translation percentage is based on our size, which is
      rad(2)/2 of total size, so our offset must be scaled by 2/rad(2)
      
-     100% - 70.7% = 29.3%/2 = 14.65% * 2/rad(2) = 20.7%
+     100% - 70.7% = 29.3%/2 = 14.65% * 2/rad(2) = 20.7%w
      */
     -webkit-transform: translateY(20.7%);
     transform: translateY(20.7%);
