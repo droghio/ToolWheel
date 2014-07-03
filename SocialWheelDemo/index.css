@@ -17,14 +17,24 @@
 // John Drogo
 */
 
-
-#stats{
-    float: left;
-    height: 90vh;
-    width: 20vw;
-    padding-right: 20px;
+.badge{
+    height: 70%;
+    padding: 15%;
+    margin: auto;
 }
 
-#stats > ul > li > p {
-    display: inline;
+div.tw-circle{
+    padding: 19px;
+    border: none;
+    background-color: #B00;
+    background-image: url("images/bdrbgrd.png");
+    background-size: 100% 100%;
+}
+
+div.tw-marker{
+    background: white;
+}
+
+div.tw-markerinner{
+    background: none;
 }
