@@ -1,7 +1,7 @@
 ToolWheel
 ===============
 
-**A in circlular widget library. I have had enough of the box's tyrannous rule of the web.***
+**A in circular widget library. I have had enough of the box's tyrannous rule of the web.***
 
 
 
@@ -9,8 +9,6 @@ ToolWheel
 ###SETUP
 
 Make sure you have the jQuery and jQuery UI scripts included in your html file.
-
-Eg.
 
   ```<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
      <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>```
@@ -26,7 +24,8 @@ Now include the the twCircle base code by adding the js and css files into your 
 ###CONSTRUCTING
 
 Once the necessary files are in place you can make a widget by calling the constructor:
-  ```var widget = new twCircle(contentArray)```
+
+      ```var widget = new twCircle(contentArray)```
   
 **NOTE:** Make sure your DOM is loaded first! (jQuery.ready was called.)
   
@@ -37,35 +36,39 @@ The widget will automatically spawn "markers" to contain each element, and resiz
 
 By default the constructor will append the widget to the body of your html document, but you can specify a parent to append the widget to, or point the constructor to a bounding circle already in your code.
 
-Check out the documentation for more detials, but here is the basic signature:
-    ```function twCircle(content, index, parentselector, size, padding, rotation)```
+Check out the documentation for more details, but here is the basic signature:
+        
+        function twCircle(content, index, parentselector, size, padding, rotation)
     
 Besides content every parameter is optional, and can be accessed post construction, for example:
 
-    ```circle.rotation = 45
-       circle.padding = 8
-       circle.r = 80 //Size is the diameter of the circle, r is the radius. Use r.```
+    circle.rotation = 45
+    circle.padding = 8
+    circle.r = 80 //Size is the diameter of the circle, r is the radius. Use r.
        
 By default your changes will not be applied, and your new widget will be hidden.
 To tell the circle to reveal itself and update its DOM call its animateIn method.
 
-  ```circle.animateIn(callback)```
+    circle.animateIn(callback)
   
 To hide a circle there is an animateOut method.
 
-  ```circle.animateOut(callback)```
+    circle.animateOut(callback)
   
 Both methods have an optional callback.
         
 If you hate the animation you can also present the widget it manually.
-  ```
+
     a = new twCircle(["hi"])
     a.updateDOM() //Update's bounding circle.
     a.calcMarkerGeo(); //Calculates layout of the markers.
     a.addMarkers() //Used the layout to construct the markers.
     $(a.dom).css({"display": "block", "transform": "scale(1)", "-webkit-transform": "scale(1)"}) //Makes it visible.
     $(a.dom).children().children("*").css({"display": "block"}) //Makes your content visible.
-  ```
+
+
+
+
 
 ###DETAILS
 
@@ -76,16 +79,18 @@ This library takes care of the style issues related to circular layouts, freeing
 
 They layout for the widget is simple.
 
+```
 --Bounding Circle (class is .tw-circle)
-  --Spacing Line (class is .tw-line)
-    --Marker (class is .tw-marker)
-      --Marker Inner (class is .tw-markerinner)
-        Your content.
+  ---Spacing Line (class is .tw-line)
+    ------Marker (class is .tw-marker)
+      ---------Marker Inner (class is .tw-markerinner)
+        ------------Your content.
         
-  --Another Line (class is .tw-line)
-    --Another Marker (class is .tw-marker)
-      --Another Marker Inner (class is .tw-markerinner)
-        More of your content.
+  ---Another Line (class is .tw-line)
+    ------Another Marker (class is .tw-marker)
+      ---------Another Marker Inner (class is .tw-markerinner)
+        ------------More of your content.
+```
         
 The markerinners will automatically rotate to keep your content upright even if you choose to rotate the entire widget, assuming you use the .rotate variable.
 
