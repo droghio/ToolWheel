@@ -25,7 +25,7 @@ Now include the the twCircle base code by adding the js and css files into your 
 
 Once the necessary files are in place you can make a widget by calling the constructor:
 
-      ```var widget = new twCircle(contentArray)```
+      var widget = new twCircle(contentArray)
   
 **NOTE:** Make sure your DOM is loaded first! (jQuery.ready was called.)
   
