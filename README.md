@@ -7,8 +7,8 @@ ToolWheel
 
 ##DEMO
 
-* [Social Wheel](http://htmlpreview.github.io/?https://github.com/droghio/ToolWheel/blob/master/SocialWheelDemo/index.html)
-* [Variable Elements](http://htmlpreview.github.io/?https://github.com/droghio/ToolWheel/blob/master/AutoSpawnSizeDemo/index.html)
+* <a href = "http://htmlpreview.github.io/?https://github.com/droghio/ToolWheel/blob/master/SocialWheelDemo/index.html" target = "_blank">Social Wheel</a>
+* <a href = "http://htmlpreview.github.io/?https://github.com/droghio/ToolWheel/blob/master/AutoSpawnSizeDemo/index.html" target = "_blank">Autospawn</a>
 
 
 
