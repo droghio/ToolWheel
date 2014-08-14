@@ -58,6 +58,7 @@
 
                     //Since we destroyed the markers we need to rebind the new ones.
                     //Make sure you don't overbind them, bad things will happen.
+                    $(".tw-marker").off()
                     $(".tw-marker").mouseover(function(event){ highlight($(event.target).children().children(".badge")) })
                     $(".tw-marker").mouseout(function(event){ unh($(event.target).children().children(".badge")) })
 
