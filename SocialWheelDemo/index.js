@@ -38,6 +38,7 @@ $(document).ready(function(){
         if (go){ go--}
     } while (go)
 
+    $(".tw-marker").off()
     $(".tw-marker").mouseover(function(event){ highlight($(event.target).children().children(".badge")) })
     $(".tw-marker").mouseout(function(event){ unh($(event.target).children().children(".badge")) })
 })
