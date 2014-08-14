@@ -5,6 +5,12 @@ ToolWheel
 
 
 
+##DEMO
+
+[Social Wheel]("http://htmlpreview.github.io/?https://github.com/droghio/ToolWheel/blob/master/SocialWheelDemo/index.html")
+[Variable Elements]("http://htmlpreview.github.io/?https://github.com/droghio/ToolWheel/blob/master/SocialWheelDemo/index.html")
+
+
 
 ###SETUP
 
